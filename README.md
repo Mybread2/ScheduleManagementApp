@@ -12,4 +12,4 @@
 
 ## ERD
 
-![ERD](./erd.png)
+![ERD](./ERD.png)
