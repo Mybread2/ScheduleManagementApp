@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.concurrent.ScheduledExecutorService;
-
 @Setter
 @Getter
 @AllArgsConstructor
@@ -27,8 +25,4 @@ public class Schedule {
         this.modified_at = modified_at;
     }
 
-    public void update(String todo, String author) {
-        this.todo = todo;
-        this.author = author;
-    }
 }
