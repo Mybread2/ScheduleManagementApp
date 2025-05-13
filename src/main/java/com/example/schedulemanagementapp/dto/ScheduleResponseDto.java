@@ -1,6 +1,5 @@
 package com.example.schedulemanagementapp.dto;
 
-import com.example.schedulemanagementapp.entity.Author;
 import com.example.schedulemanagementapp.entity.Schedule;
 import lombok.Getter;
 
@@ -8,26 +7,17 @@ import lombok.Getter;
 public class ScheduleResponseDto {
     private final Long id;
     private final String todo;
-    private final Long authorId;
-    private final String authorName;
-    private final String authorEmail;
+    private final AuthorResponseDto author;
     private final String password;
-    private final String created_at;
-    private final String modified_at;
-    private final String authorCreatedAt;
-    private final String authorModifiedAt;
+    private final String createdAt;
+    private final String modifiedAt;
 
     public ScheduleResponseDto(Schedule schedule) {
         this.id = schedule.getId();
         this.todo = schedule.getTodo();
-        Author author = schedule.getAuthor();
-        this.authorId = author.getId();
-        this.authorName = author.getName();
-        this.authorEmail = author.getEmail();
-        this.authorCreatedAt = author.getCreated_at();
-        this.authorModifiedAt = author.getModified_at();
+        this.author = new AuthorResponseDto(schedule.getAuthor());
         this.password = schedule.getPassword();
-        this.created_at = schedule.getCreated_at();
-        this.modified_at = schedule.getModified_at();
+        this.createdAt = schedule.getCreated_at();
+        this.modifiedAt = schedule.getModified_at();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.schedulemanagementapp.controller;
 
 import com.example.schedulemanagementapp.dto.AuthorRequestDto;
+import com.example.schedulemanagementapp.dto.AuthorResponseDto;
 import com.example.schedulemanagementapp.entity.Author;
 import com.example.schedulemanagementapp.service.AuthorService;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +21,9 @@ public class AuthorController {
     }
 
     @PostMapping
-    public ResponseEntity<Author> createAuthor(@RequestBody AuthorRequestDto dto){
+    public ResponseEntity<AuthorResponseDto> createAuthor(@RequestBody AuthorRequestDto dto){
         Author savedAuthorId = authorService.save(dto);
-        return ResponseEntity.ok(savedAuthorId);
+        AuthorResponseDto responseDto = new AuthorResponseDto(savedAuthorId);
+        return ResponseEntity.ok(responseDto);
     }
 }
