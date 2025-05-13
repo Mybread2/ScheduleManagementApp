@@ -42,6 +42,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public List<ScheduleResponseDto> findSchedules(String modifiedDate, String author) {
         List<Schedule> schedules = scheduleRepository.findSchedules(modifiedDate, author);
+
+        if (schedules.isEmpty()) {
+            throw new ScheduleNotFoundException("일치하는 수정일 및 작성자가 없습니다.");
+        }
+
         return schedules.stream()
                 .map(ScheduleResponseDto::new)
                 .collect(Collectors.toList());
