@@ -87,6 +87,7 @@ spring.datasource.password=your_mysql_password
 
 ## 💾 데이터베이스 테이블
 sql CREATE TABLE author ( 
+
 id BIGINT AUTO_INCREMENT PRIMARY KEY, 
 name VARCHAR(100) NOT NULL, email VARCHAR(100) NOT NULL, 
 created_at VARCHAR(50) NOT NULL, 
@@ -94,6 +95,7 @@ modified_at VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE schedule ( 
+
 id BIGINT AUTO_INCREMENT PRIMARY KEY,
 todo VARCHAR(255) NOT NULL, 
 author_id BIGINT NOT NULL, 
