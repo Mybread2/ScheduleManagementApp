@@ -1,28 +1,22 @@
 package com.example.schedulemanagementapp.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 public class Schedule {
     private Long id;
+    @NonNull
     private String todo;
+    @NonNull
     private Author author;
+    @NonNull
     private String password;
+    @NonNull
     private String created_at;
+    @NonNull
     private String modified_at;
-
-    public Schedule(String todo, Author author, String password, String created_at, String modified_at) {
-        this.todo = todo;
-        this.author = author;
-        this.password = password;
-        this.created_at = created_at;
-        this.modified_at = modified_at;
-    }
 
 }

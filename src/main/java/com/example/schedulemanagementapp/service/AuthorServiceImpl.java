@@ -22,7 +22,7 @@ public class AuthorServiceImpl implements AuthorService{
     @Transactional
     public Author save(AuthorRequestDto dto) {
         String now = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-        Author author = new Author(null, dto.getName(), dto.getEmail(), now, now);
+        Author author = new Author(dto.getName(), dto.getEmail(), now, now);
         return authorRepository.save(author);
     }
 

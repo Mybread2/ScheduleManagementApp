@@ -79,22 +79,35 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Transactional
     public ScheduleResponseDto updateSchedule(Long id, ScheduleRequestDto dto) {
         String now = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
+        // 1. 기존 스케줄을 먼저 확인
+        Schedule schedule = scheduleRepository.findById(id)
+                .orElseThrow(() -> new ScheduleNotFoundException("해당 일정이 존재하지 않습니다. ID = " + id));
+
+        // 2. authorId & password 검증
+        if (!schedule.getAuthor().getId().equals(dto.getAuthorId())) {
+            throw new InvalidPasswordException("작성자 정보가 일치하지 않습니다.");
+        }
+        if (!schedule.getPassword().equals(dto.getPassword())) {
+            throw new InvalidPasswordException("비밀번호가 일치하지 않습니다.");
+        }
+
+        // 3. authorId는 기존 값을 그대로 사용
         int updated = scheduleRepository.updateSchedule(
                 id,
                 dto.getTodo(),
-                dto.getAuthorId(),
-                dto.getPassword(),
+                schedule.getAuthor().getId(),
+                schedule.getPassword(),
                 now
         );
 
         if (updated == 0) {
             throw new InvalidPasswordException("비밀번호가 틀리거나 일정이 존재하지 않습니다.");
         }
-        // 성공 시 최신 데이터 다시 조회해서 반환
-
-        Schedule schedule = scheduleRepository.findById(id)
+        // 4. 최신 정보 반환
+        Schedule updatedSchedule = scheduleRepository.findById(id)
                 .orElseThrow(() -> new ScheduleNotFoundException("일정 정보를 찾을 수 없습니다."));
-        return new ScheduleResponseDto(schedule);
+        return new ScheduleResponseDto(updatedSchedule);
     }
 
     @Override

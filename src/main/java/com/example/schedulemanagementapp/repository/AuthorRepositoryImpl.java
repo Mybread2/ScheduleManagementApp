@@ -36,7 +36,14 @@ public class AuthorRepositoryImpl implements AuthorRepository {
 
         Number key = keyHolder.getKey();
         if (key != null) {
-            return new Author(key.longValue(), author.getName(), author.getEmail(), author.getCreated_at(), author.getModified_at());
+            Author savedAuthor = new Author(
+                    author.getName(),
+                    author.getEmail(),
+                    author.getCreated_at(),
+                    author.getModified_at()
+            );
+            savedAuthor.setId(key.longValue());
+            return savedAuthor;
         }
         return author;
     }
@@ -49,13 +56,16 @@ public class AuthorRepositoryImpl implements AuthorRepository {
             Author author = jdbcTemplate.queryForObject(
                     sql,
                     new Object[]{id},
-                    (rs, rowNum) -> new Author(
-                            rs.getLong("id"),
-                            rs.getString("name"),
-                            rs.getString("email"),
-                            rs.getString("created_at"),
-                            rs.getString("modified_at")
-                    )
+                    (rs, rowNum) -> {
+                        Author a = new Author(
+                                rs.getString("name"),
+                                rs.getString("email"),
+                                rs.getString("created_at"),
+                                rs.getString("modified_at")
+                        );
+                        a.setId(rs.getLong("id"));
+                        return a;
+                    }
             );
             return Optional.ofNullable(author);
         } catch (Exception e) {
