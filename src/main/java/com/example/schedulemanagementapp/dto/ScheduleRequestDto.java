@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ScheduleRequestDto {
-
     private String todo;
     private Long authorId;
     private String password;
