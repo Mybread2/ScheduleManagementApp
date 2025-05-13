@@ -79,6 +79,7 @@ DELETE /schedules/{id} Content-Type: application/json { "password": "암호" }
 ## ⚙️ 환경설정
 
 `src/main/resources/application.properties` 참고
+
 properties spring.datasource.url=jdbc:mysql://localhost:3306/schedule?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&useSSL=false spring.datasource.username=your_mysql_username 
 spring.datasource.password=your_mysql_password
 
