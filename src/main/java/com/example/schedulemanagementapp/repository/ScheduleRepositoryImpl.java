@@ -96,7 +96,7 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
             Schedule schedule = jdbcTemplate.queryForObject(sql, new Object[]{id}, scheduleRowMapper);
             return Optional.of(schedule);
         } catch (EmptyResultDataAccessException e) {
-            throw new ScheduleNotFoundException("해당 ID의 일정이 존재하지 않습니다. ID = " + id);
+            return Optional.empty();
         }
     }
 
