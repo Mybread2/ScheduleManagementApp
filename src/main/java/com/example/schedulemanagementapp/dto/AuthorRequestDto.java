@@ -5,11 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
-public class ScheduleRequestDto {
+@AllArgsConstructor
+public class AuthorRequestDto {
 
-    private String todo;
-    private Long authorId;
-    private String password;
+    private String name;
+    private String email;
+
 }
