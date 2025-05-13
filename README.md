@@ -99,6 +99,8 @@ created_at VARCHAR(50) NOT NULL,
 modified_at VARCHAR(50) NOT NULL 
 );
 
+
+
 CREATE TABLE schedule ( 
 
 id BIGINT AUTO_INCREMENT PRIMARY KEY,
