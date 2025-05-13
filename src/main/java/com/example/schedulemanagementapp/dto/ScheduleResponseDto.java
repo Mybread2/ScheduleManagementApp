@@ -5,12 +5,12 @@ import lombok.Getter;
 
 @Getter
 public class ScheduleResponseDto {
-    private Long id;
-    private String todo;
-    private String author;
-    private String password;
-    private String created_at;
-    private String modified_at;
+    private final Long id;
+    private final String todo;
+    private final String author;
+    private final String password;
+    private final String created_at;
+    private final String modified_at;
 
     public ScheduleResponseDto(Schedule schedule) {
         this.id = schedule.getId();

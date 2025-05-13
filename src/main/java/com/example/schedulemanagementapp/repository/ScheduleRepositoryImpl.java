@@ -1,6 +1,7 @@
 package com.example.schedulemanagementapp.repository;
 
 import com.example.schedulemanagementapp.entity.Schedule;
+import com.example.schedulemanagementapp.exception.ScheduleNotFoundException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -100,7 +101,7 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
             );
             return Optional.of(schedule);
         } catch (EmptyResultDataAccessException e) {
-            return Optional.empty();
+            throw new ScheduleNotFoundException("해당 ID의 일정이 존재하지 않습니다. ID = " + id);
         }
     }
 
@@ -111,7 +112,7 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
     }
 
     @Override
-    public int ddeleteByIdAndPassword(Long id, String password) {
+    public int deleteByIdAndPassword(Long id, String password) {
         String sql = "DELETE FROM schedule WHERE id = ? AND password = ?";
         return jdbcTemplate.update(sql, id, password);
     }

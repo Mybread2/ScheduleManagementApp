@@ -1,6 +1,5 @@
 package com.example.schedulemanagementapp.service;
 
-import com.example.schedulemanagementapp.controller.ScheduleController;
 import com.example.schedulemanagementapp.dto.ScheduleRequestDto;
 import com.example.schedulemanagementapp.dto.ScheduleResponseDto;
 
