@@ -78,7 +78,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public void deleteByIdAndPassword(Long id, String password) {
         int deleted = scheduleRepository.deleteByIdAndPassword(id, password);
-        if(deleted == 0){
+        if (deleted == 0) {
             throw new InvalidPasswordException("비밀번호가 일치하지 않습니다.");
         }
     }

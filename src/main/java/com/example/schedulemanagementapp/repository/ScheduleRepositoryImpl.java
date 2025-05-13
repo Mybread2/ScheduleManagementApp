@@ -31,14 +31,14 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(con -> {
-                    PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                    ps.setString(1, schedule.getTodo());
-                    ps.setString(2, schedule.getAuthor());
-                    ps.setString(3, schedule.getPassword());
-                    ps.setString(4, schedule.getCreated_at());
-                    ps.setString(5, schedule.getModified_at());
-                    return ps;
-                }, keyHolder);
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, schedule.getTodo());
+            ps.setString(2, schedule.getAuthor());
+            ps.setString(3, schedule.getPassword());
+            ps.setString(4, schedule.getCreated_at());
+            ps.setString(5, schedule.getModified_at());
+            return ps;
+        }, keyHolder);
 
         // 저장된 id 값을 객체에 넣어주기
         Number generatedId = keyHolder.getKey();
@@ -55,12 +55,12 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
         StringBuilder sql = new StringBuilder("SELECT * FROM schedule WHERE 1=1");
         List<Object> params = new ArrayList<>();
 
-        if(modifiedDate != null && !modifiedDate.isEmpty()){
+        if (modifiedDate != null && !modifiedDate.isEmpty()) {
             sql.append(" AND LEFT(modified_at, 10) = ?");
             params.add(modifiedDate);
         }
 
-        if(author != null && !author.isEmpty()){
+        if (author != null && !author.isEmpty()) {
             sql.append(" AND author = ?");
             params.add(author);
         }
@@ -78,7 +78,7 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
                         rs.getString("created_at"),
                         rs.getString("modified_at")
                 )
-);
+        );
 
 
     }
