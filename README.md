@@ -123,8 +123,6 @@ modified_at VARCHAR(50)
 1. 자바 17 및 MySQL 설치
 2. DB 및 테이블 생성 (위 SQL 활용)
 3. `application.properties`에서 DB 정보 변경
-4. Gradle 빌드 및 실행
-bash ./gradlew build ./gradlew bootRun
 
 ---
 
